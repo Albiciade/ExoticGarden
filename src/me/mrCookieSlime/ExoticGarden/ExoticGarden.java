@@ -651,10 +651,16 @@ public class ExoticGarden extends JavaPlugin {
 		String id = tid.toUpperCase().replace(" ", "_");
 		Tree tree = new Tree(id, fruitName, texture, soil);
 		trees.add(tree);
-
-		items.put(id + "_SAPLING", new CustomItem(Material.OAK_SAPLING, color + name + " Sapling"));
-
-		new SlimefunItem(category_main, new CustomItem(Material.OAK_SAPLING, color + name + " Sapling"), id + "_SAPLING", new RecipeType(new CustomItem(Material.GRASS, "&7Breaking Grass")),
+		
+		String saplingName;
+		if(name.toLowerCase().startsWith("a") || name.toLowerCase().startsWith("e") || name.toLowerCase().startsWith("i") || name.toLowerCase().startsWith("o") || name.toLowerCase().startsWith("u")) {
+			saplingName = color + "Pousse d'" + name;
+		} else {
+			saplingName = color + "Pousse de " + name;
+		}
+		
+		items.put(id + "_SAPLING", new CustomItem(Material.OAK_SAPLING, saplingName));
+		new SlimefunItem(category_main, new CustomItem(Material.OAK_SAPLING, saplingName), id + "_SAPLING", new RecipeType(new CustomItem(Material.GRASS, "&7Breaking Grass")),
 		new ItemStack[] {null, null, null, null, new ItemStack(Material.GRASS), null, null, null, null})
 		.register();
 
